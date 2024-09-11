@@ -26,6 +26,7 @@ public class MainWindow extends AnchorPane {
 
     @FXML
     public void initialize() {
+        // Scroll scrollPane down to the end every time dialogContainer's height changes
         scrollPane.vvalueProperty().bind(dialogContainer.heightProperty());
     }
 
