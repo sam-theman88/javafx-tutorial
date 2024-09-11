@@ -30,13 +30,18 @@ public class Main extends Application {
         userInput = new TextField();
         sendButton = new Button("Send");
 
-        DialogBox dialogBox = new DialogBox("Hello!", userImage);
-        dialogContainer.getChildren().addAll(dialogBox);
+        // Handling user input
+        sendButton.setOnMouseClicked((event) -> {
+            handleUserInput();
+        });
+        userInput.setOnAction((event) -> {
+            handleUserInput();
+        });
 
         AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
 
-        //Formatting the window to look as expected
+        // Formatting the window to look as expected
 
         stage.setTitle("Duke");
         stage.setResizable(false);
@@ -72,5 +77,15 @@ public class Main extends Application {
         stage.show();
 
         // More code to be added here later
+    }
+
+    /**
+     * Creates a dialog box containing user input, and appends it to
+     * the dialog container. Clears the user input after processing.
+     */
+    private void handleUserInput() {
+        DialogBox userInputBox = new DialogBox(userInput.getText(), userImage);
+        dialogContainer.getChildren().addAll(userInputBox);
+        userInput.clear();
     }
 }
