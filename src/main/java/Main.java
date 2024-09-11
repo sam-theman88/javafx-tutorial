@@ -18,6 +18,7 @@ public class Main extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
+    private Duke duke = new Duke();
 
     @Override
     public void start(Stage stage) {
@@ -81,12 +82,18 @@ public class Main extends Application {
     }
 
     /**
-     * Creates a dialog box containing user input, and appends it to
-     * the dialog container. Clears the user input after processing.
+     * Creates one dialog box containing user input, and another dialog box
+     * containing Duke's response, then appends both to the dialog container.
+     * Clears the user input after processing.
      */
     private void handleUserInput() {
-        DialogBox userInputBox = new DialogBox(userInput.getText(), userImage);
-        dialogContainer.getChildren().addAll(userInputBox);
+        String userText = userInput.getText();
+        String dukeText = duke.getResponse(userText);
+
+        DialogBox userBox = new DialogBox(userText, userImage);
+        DialogBox dukeBox = new DialogBox(dukeText, dukeImage);
+
+        dialogContainer.getChildren().addAll(userBox, dukeBox);
         userInput.clear();
     }
 }
