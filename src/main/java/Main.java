@@ -22,13 +22,15 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) {
         // Setting up required components
-
         scrollPane = new ScrollPane();
         dialogContainer = new VBox(); // holds main content showed in the scrollPane
         scrollPane.setContent(dialogContainer); // scrollPane holds VBox
 
         userInput = new TextField();
         sendButton = new Button("Send");
+
+        // Scroll scrollPane down to the end every time dialogContainer's height changes.
+        dialogContainer.heightProperty().addListener((observable) -> scrollPane.setVvalue(1.0));
 
         // Handling user input
         sendButton.setOnMouseClicked((event) -> {
@@ -42,7 +44,6 @@ public class Main extends Application {
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
 
         // Formatting the window to look as expected
-
         stage.setTitle("Duke");
         stage.setResizable(false);
         stage.setMinHeight(600.0);
